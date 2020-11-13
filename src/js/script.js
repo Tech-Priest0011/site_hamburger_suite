@@ -32,4 +32,41 @@ document.addEventListener("DOMContentLoaded", function(event) {
     ]
 
 
+    // console.log(window.location.search);
+    // console.log(new URLSearchParams(window.location.search));
+    // console.log(new URLSearchParams(window.location.search).get('type'));
+
+    var type = new URLSearchParams(window.location.search).get('type') || "pizza";
+    var infoPage = informations.find(x => x.id === type);
+    console.log(infoPage);
+    console.log(type);
+
+    var title = document.querySelector('.main-title');
+    title.innerHTML = infoPage.title;
+
+    var slogan = document.querySelector('.sub-title');
+    slogan.innerHTML = infoPage.slogan;
+
+    var description = document.querySelector('.sub-description p');
+    description.innerHTML = infoPage.description;
+
+    var image = document.querySelector('.sub-image img');
+    image.src = infoPage.image;
+
+    var liste = document.querySelector('.type-list');
+    liste.innerHTML = "";
+    for(var i = 0; i < infoPage.type.length; i++){
+        var li = document.createElement('li');
+        li.innerHTML = infoPage.type[i];
+        liste.appendChild(li);
+    }
+
+    // var gallery = document.querySelector('.grid-gallery');
+    // gallery. innerHTML = "";
+    // for(var i = 0; i < infoPage.gallery.length; i++){
+    //     var images = document.createElement('img');
+    //     images.innerHTML = infoPage.gallery[i];
+    //     gallery.appendChild(images);
+    // }
+
 });
